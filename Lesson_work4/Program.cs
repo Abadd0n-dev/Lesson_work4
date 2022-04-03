@@ -10,7 +10,16 @@ namespace Lesson_work4
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine(GetFullName("Нестеров", "Владимир", "Алексеевич"));
+            Console.WriteLine(GetFullName("Сеницые", "Андрей", "Генадьевич"));
+            Console.WriteLine(GetFullName("Манилов", "Александр", "Ветальевич"));
+            Console.WriteLine(GetFullName("Лисичкин", "Руслан", "Максимович"));
+            Console.ReadLine();
+        }
+        static string GetFullName(string lastname, string name, string patronymic)
+        {
+            return $"{lastname} {name} {patronymic}";
         }
     }
 }
+
