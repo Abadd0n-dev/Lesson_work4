@@ -8,24 +8,68 @@ namespace Lesson_work4
 {
     internal class Program
     {
+enum season
+        {
+            Winter,
+            Spring,
+            Summer,
+            Autumn,
+            Error
+        }
+
         static void Main(string[] args)
         {
-            string output = StringOutput();
-            int spacereturns = linebreak(output);
-            Console.WriteLine(spacereturns);
-            Console.ReadLine();
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Введите номер месяца: ");
+                Console.WriteLine(Season(month(Convert.ToInt32(Console.ReadLine()))));
+                Console.ReadLine();
+            }
         }
-        static string StringOutput()
+        static season month(int number)
         {
-            Console.Write("Введите последовательность чисел через пробел: ");
-            return Console.ReadLine();
+            try
+            {
+
+                if (number <= 0 || number > 12)
+                    throw new Exception("Ошибка: введите число от 1 до 12");
+
+
+                switch ((number % 12) / 3)
+                {
+                    case 0:
+                        return season.Winter;
+                    case 1:
+                        return season.Spring;
+                    case 2:
+                        return season.Summer;
+                    default: return season.Autumn;
+                }
+            }
+            catch (Exception message)
+            {
+                Console.WriteLine(message.Message);
+                return season.Error;
+
+            }
         }
-        static int linebreak(string output)
+        static string Season(season ofmonth)
         {
-            var words = output.Split();
-            int part = default;
-            for (int i = 0; i < words.Length; part += int.Parse(words[i++])) ;
-            return part;
+
+            switch (ofmonth)
+            {
+                case season.Winter:
+                    return "Зима";
+                case season.Spring:
+                    return "Весна";
+                case season.Summer:
+                    return "Лето";
+                case season.Autumn:
+                    return "Осень";
+                default: return "";
+            }
+
         }
     }
 }
